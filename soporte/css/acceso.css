@@ -1,0 +1,16 @@
+.formulario {
+	max-width: 330px;
+	margin: 0 auto;
+}
+
+.formulario input[type="text"] {
+	margin-bottom: -1px;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.formulario input[type="password"] {
+	margin-bottom: 10px;
+	border-top-left-radius: 0;
+	border-top-right-radius: 0;
+}

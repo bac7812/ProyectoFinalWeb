@@ -1,0 +1,67 @@
+html{
+	position: relative;
+	min-height: 100%;
+}
+body {
+	background-color: #EEEEEE;
+	margin-bottom: 60px;
+}
+
+.titulo {
+	color: #088A29;
+	margin-bottom: 20px;
+	padding-bottom: 9px;
+	border-bottom: 1px solid #EEEEEE;
+}
+
+.acceso {
+	padding-top: 2%;
+}
+
+.configuracion {
+	border: 1px solid #ddd;
+	border-top: 0px;
+	border-radius: 0px 0px 4px 4px;
+}
+
+.panel {
+	margin-bottom: 5%;
+}	
+
+.mensaje .error {
+	background-color: #FF0040;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 10px;
+}
+
+.mensaje .correcto {
+	background-color: #088A29;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 10px;
+}
+
+.mensaje .informacion {
+	background-color: #9C9C9C;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 10px;
+}
+
+.mensaje .detalle {
+	background-color: #9C9C9C;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 2px;
+}
+
+.footer {
+	background-color: #FFFFFF;
+	text-align: center;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 40 px;
+	line-height: 60px;
+}

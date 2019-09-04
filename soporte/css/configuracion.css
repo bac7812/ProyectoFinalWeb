@@ -1,0 +1,18 @@
+fieldset {
+	padding: 10px;
+	margin: 10px;
+}
+
+legend{
+	border-bottom: 1px solid;
+}
+
+button {
+	left:0px;
+}
+
+.insertar{
+	float: right;
+	margin-top: -50px;
+}
+	
