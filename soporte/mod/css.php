@@ -4,5 +4,9 @@
 	
 	<!-- CSS Propios -->
     <link href="/proyecto/css/general.css" rel="stylesheet">
-	<link href="/proyecto/css/<?php echo $seccion ?>.css" rel="stylesheet">
+	<?php
+		if (isset($seccion)){
+			echo '<link href="/proyecto/css/'.$seccion.'.css" rel="stylesheet">';
+		}
+	?>
 	
