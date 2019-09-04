@@ -17,8 +17,23 @@
 		$resultado->bindParam(':apellidos', $apellidos);
 		$resultado->bindParam(':correoelectronico', $correoelectronico);
 		// ejecutamos la actualización
-		$resultado->execute();
-		$_SESSION['aviso'] = '<p class="correcto">Tu perfil se ha modificado con éxito.</p>'.$usuario;
+		if($resultado->execute()) {
+			$id	= $_SESSION['id'];		
+			// declaramos la consulta
+			$sql = "SELECT * FROM usuarios WHERE id=:id";
+			// preparamos la consulta
+			$resultado = $conn->prepare($sql);
+			// pasamos valores a la consulta mediante parametros
+			$resultado->bindValue(':id', $id);
+			// ejecutamos la consulta
+			$resultado->execute();
+			$registro = $resultado->fetch();
+			// comprobamos la consulta
+			if ($registro) {
+				$usuario 			= $registro['usuario'];
+				$_SESSION['aviso'] = '<p class="correcto">Tu perfil se ha modificado con éxito.</p>' ;
+			}
+		}
 	} else {
 		$id	= $_SESSION['id'];		
 		// declaramos la consulta
