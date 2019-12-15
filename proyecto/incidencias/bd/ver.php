@@ -56,6 +56,7 @@
 			}
 		}
 	} else{
+
 		$id	= htmlentities(addslashes($_GET['id']));
 		// declaramos la consulta
 		$sql = "SELECT *, CONCAT(s.nombre,' ', s.apellidos) AS solicitante, t.tipo, c.categoria, p.prioridad, e.estado, CONCAT(a.nombre,' ', a.apellidos) AS asignada, v.validacion FROM incidencias AS i
@@ -90,12 +91,12 @@
 			$descripcion 		= $registro['descripcion'];
 			$adjunto			= $registro['adjunto'];
 		}
-		
 		// seguimientos
 		// declaramos la consulta
 		$sqlseguimientos = "SELECT *, CONCAT(u.nombre,' ', u.apellidos) AS usuario, u.id, s.id AS idSeguimiento FROM seguimientos AS s
 							JOIN usuarios AS u ON s.usuario = u.id
-							WHERE incidencia = :incidencia";
+							WHERE incidencia = :incidencia
+							ORDER BY id";
 		// preparamos la consulta
 		$resultadoseguimientos = $conn->prepare($sqlseguimientos);
 		// pasamos valores a la consulta mediante parametros

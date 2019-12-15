@@ -40,11 +40,10 @@
 		$resultado->bindParam(':titulo', $titulo);
 		$resultado->bindParam(':descripcion', $descripcion);
 		$resultado->bindParam(':adjunto', $adjunto);
-		$mensaje = '<p class="correcto">Ya solicitado incidencia.</p>';
 		// ejecutamos la consulta
 		if($resultado->execute()){
 			if(isset($_FILES['adjunto']['tmp_name'])){
-				move_uploaded_file($_FILES['adjunto']['tmp_name'], $adjunto);
+				move_uploaded_file($_FILES['adjunto']['tmp_name'],$_SERVER['DOCUMENT_ROOT'] .'/proyecto/'.$adjunto);
 			}
 			$_SESSION['aviso'] = '<p class="correcto">Ya solicitado incidencia.</p>';
 			header ("location: /proyecto/incidencias");

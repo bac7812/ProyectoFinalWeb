@@ -27,8 +27,18 @@
 				$resultado->bindParam(':id', $id);
 				// ejecutamos la consulta
 				if($resultado->execute()){
-					$_SESSION['aviso'] = '<p class="correcto">Ya eliminado incidencia.</p>';
-					header('location: /proyecto/incidencias');
+					$incidencia	= htmlentities(addslashes($_GET['id']));
+					// declaramos la consulta
+					$sql = "DELETE FROM seguimientos WHERE incidencia=:incidencia";
+					// preparamos la consulta
+					$resultado = $conn->prepare($sql);
+					// pasamos valores a la consulta mediante parametros
+					$resultado->bindParam(':incidencia', $incidencia);
+					// ejecutamos la consulta
+					if($resultado->execute()){
+						$_SESSION['aviso'] = '<p class="correcto">Ya eliminado incidencia.</p>';
+						header('location: /proyecto/incidencias');
+					}
 				}
 			}
 		}

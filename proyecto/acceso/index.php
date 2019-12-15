@@ -36,7 +36,6 @@
 			header('location: error.php');
 		}
 		include('../mod/pie.php');
-		include('mod/cookies.php');
 	?>
 	
 	<?php include('../mod/js.php'); ?>

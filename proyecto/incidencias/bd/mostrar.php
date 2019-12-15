@@ -1,7 +1,7 @@
 <?php
 	// conexión a la base de datos
 	require('../conf/conexion.php');
-	
+
 	// declarar identidad
 	$id = $_SESSION['id'];
 	if($configurar == 1){
@@ -13,7 +13,8 @@
 			JOIN categorias AS c ON i.categoria = c.id
 			JOIN prioridades AS p ON i.prioridad = p.id
 			JOIN estados AS e ON i.estado = e.id
-			JOIN validaciones AS v ON i.validacion = v.id";
+			JOIN validaciones AS v ON i.validacion = v.id
+			ORDER BY id";
 		// preparamos la consulta
 		$resultado = $conn->prepare($sql);
 		// ejecutamos la consulta
@@ -29,7 +30,8 @@
 			JOIN prioridades AS p ON i.prioridad = p.id
 			JOIN estados AS e ON i.estado = e.id
 			JOIN validaciones AS v ON i.validacion = v.id
-			WHERE asignada=:asignada";
+			WHERE i.asignada=:asignada
+			ORDER BY id";
 			// preparamos la consulta
 			$resultado = $conn->prepare($sql);
 			// pasamos valores a la consulta mediante parametros
@@ -47,7 +49,8 @@
 				JOIN prioridades AS p ON i.prioridad = p.id
 				JOIN estados AS e ON i.estado = e.id
 				JOIN validaciones AS v ON i.validacion = v.id
-				WHERE id=:id";
+				WHERE i.solicitante=:id
+				ORDER BY id";
 			// preparamos la consulta
 			$resultado = $conn->prepare($sql);
 			// pasamos valores a la consulta mediante parametros

@@ -23,8 +23,6 @@
 					<label for="contrasena" class="sr-only">Contraseña</label>
 					<input type="password" name="contrasena" class="form-control" placeholder="Contraseña" required>
 					
-					<!--<p><a href="index.php?opcion=recuperar" title="¿Olvidaste tu contraseña?">¿Olvidaste tu contraseña?</a></p>-->
-					
 					<button type="submit" id="acceso" class="btn btn-lg btn-primary btn-block">Entrar</button>
 					
 				</form><!-- /formulario -->

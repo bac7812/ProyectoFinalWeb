@@ -186,7 +186,8 @@
 		// declaramos la consulta
 		$sqlseguimientos = "SELECT *, CONCAT(u.nombre,' ', u.apellidos) AS usuario, u.id, s.id AS idSeguimiento FROM seguimientos AS s
 							JOIN usuarios AS u ON s.usuario = u.id
-							WHERE incidencia = :incidencia";
+							WHERE incidencia = :incidencia
+							ORDER BY id";
 		// preparamos la consulta
 		$resultadoseguimientos = $conn->prepare($sqlseguimientos);
 		// pasamos valores a la consulta mediante parametros
