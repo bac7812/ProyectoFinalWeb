@@ -158,7 +158,7 @@ CREATE TABLE `opciones` (
 
 LOCK TABLES `opciones` WRITE;
 /*!40000 ALTER TABLE `opciones` DISABLE KEYS */;
-INSERT INTO `opciones` VALUES (2,'acceder','Iniciar sesión',1),(2,'nuevacontrasena','Nueva contraseña',0),(2,'recuperar','Recuperar contraseña',0),(2,'salir','',0),(3,'editar','Editar incidencia',0),(3,'eliminar','',0),(3,'mostrar','Incidencias',1),(3,'solicitar','Solicitar incidencia',0),(3,'ver','Ver incidencia 	',0),(4,'categorias','Editar categorias',0),(4,'contrasena','Editar contraseña',0),(4,'editarCategoria','Editar categoria',0),(4,'editarTipo','Editar tipo',0),(4,'editarUsuario','Editar usuario',0),(4,'eliminarCategoria','',0),(4,'eliminarTipo','',0),(4,'eliminarUsuario','',0),(4,'insertarCategoria','Insertar categoria',0),(4,'insertarTipo','Insertar tipo',0),(4,'insertarUsuario','Insertar usuario',0),(4,'perfil','Editar perfil',1),(4,'tipos','Editar tipos',0),(4,'usuarios','Editar usuarios',0);
+INSERT INTO `opciones` VALUES (2,'acceder','Iniciar sesión',1),(2,'salir','',0),(3,'editar','Editar incidencia',0),(3,'eliminar','',0),(3,'mostrar','Incidencias',1),(3,'solicitar','Solicitar incidencia',0),(3,'ver','Ver incidencia 	',0),(4,'categorias','Editar categorias',0),(4,'contrasena','Editar contraseña',0),(4,'editarCategoria','Editar categoria',0),(4,'editarTipo','Editar tipo',0),(4,'editarUsuario','Editar usuario',0),(4,'eliminarCategoria','',0),(4,'eliminarTipo','',0),(4,'eliminarUsuario','',0),(4,'insertarCategoria','Insertar categoria',0),(4,'insertarTipo','Insertar tipo',0),(4,'insertarUsuario','Insertar usuario',0),(4,'perfil','Editar perfil',1),(4,'tipos','Editar tipos',0),(4,'usuarios','Editar usuarios',0);
 /*!40000 ALTER TABLE `opciones` ENABLE KEYS */;
 UNLOCK TABLES;
 
