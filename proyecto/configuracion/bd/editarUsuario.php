@@ -10,7 +10,7 @@
 		$correoelectronico	= htmlentities(addslashes($_POST['correoelectronico']));
 		$estado				= htmlentities(addslashes($_POST['estado']));
 		$contraseña			= htmlentities(addslashes($_POST['contrasena']));
-		$contrasena = md5($nuevaContrasena);
+		$contrasena = md5($contrasena);
 		// declaramos la actualización
 		$sql = "UPDATE usuarios SET usuario=:usuario, nombre=:nombre, apellidos=:apellidos, correoelectronico=:correoelectronico, estado=:estado, contrasena=:contrasena WHERE id=:id";
 		// preparamos la actualización
@@ -25,6 +25,10 @@
 		$resultado->bindParam(':contrasena', $contrasena);
 		// ejecutamos la actualización
 		if($resultado->execute()){
+			$verValor = 0;
+			$editarValor = 0;
+			$eliminarValor = 0;
+			$configurarValor = 0;
 			foreach($_POST['permisos'] as $valor)
 			{
 				if($valor == 'ver') { $verValor = 1; }
@@ -44,14 +48,7 @@
 			$resultado->bindParam(':configurar', $configurarValor);
 			// comprobamos la consulta
 			if ($resultado->execute()) {
-				$sql = "SELECT * FROM permisos WHERE id=:id";
-				// preparamos la consulta
-				$resultadopermisos = $conn->prepare($sql);
-				// pasamos valores a la consulta mediante parametros
-				$resultadopermisos->bindValue(':id', $id);
-				// ejecutamos la consulta
-				$resultadopermisos->execute();
-				$registropermisos = $resultadopermisos->fetch();
+				
 				$_SESSION['aviso'] = '<p class="correcto">Ya modificado usuario.</p>';
 				header('location: /proyecto/configuracion/index.php?opcion=usuarios');
 			}

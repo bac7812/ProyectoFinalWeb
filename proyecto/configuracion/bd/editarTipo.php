@@ -15,9 +15,10 @@
 		$resultado->bindParam(':tipo', $tipo);
 		$resultado->bindParam(':estado', $estado);
 		// ejecutamos la actualización
-		$resultado->execute();
-		$_SESSION['aviso'] = '<p class="correcto">Ya modificado tipo.</p>';
-		header('location: /proyecto/configuracion/index.php?opcion=tipos');
+		if($resultado->execute()){
+			$_SESSION['aviso'] = '<p class="correcto">Ya modificado tipo.</p>';
+			header('location: /proyecto/configuracion/index.php?opcion=tipos');
+		}
 	} else {
 		$id	= htmlentities(addslashes($_GET['id']));
 		// declaramos la consulta

@@ -7,6 +7,7 @@
 		// comprobar seguimiento para añadir
 		if($_POST['seguimiento'] == "añadir") {
 			if($_POST['descripcion_seguimiento'] != ""){
+				$id = htmlentities(addslashes($_GET['id']));
 				// declaramos la consulta
 				$sql = "SELECT * FROM incidencias WHERE id=:id";
 				// preparamos la consulta
@@ -91,12 +92,26 @@
 			$descripcion 		= $registro['descripcion'];
 			$adjunto			= $registro['adjunto'];
 		}
+		// idUsuarioSeguimientos
+		// declaramos la consulta
+		$sqlIdUsuarioSeguimientos = "SELECT usuario FROM seguimientos WHERE incidencia = :incidencia GROUP BY usuario";
+		// preparamos la consulta
+		$resultadoIdUsuarioSeguimientos = $conn->prepare($sqlIdUsuarioSeguimientos);
+		// pasamos valores a la consulta mediante parametros
+		$resultadoIdUsuarioSeguimientos->bindValue(':incidencia', $id);
+		// ejecutamos la consulta
+		$resultadoIdUsuarioSeguimientos->execute();
+		$registroIdUsuarioSeguimientos = $resultadoIdUsuarioSeguimientos->fetch();
+		if($registroIdUsuarioSeguimientos){
+			$IdUsuarioSeguimientos = $registroIdUsuarioSeguimientos['usuario'];
+		}
+		
 		// seguimientos
 		// declaramos la consulta
-		$sqlseguimientos = "SELECT *, CONCAT(u.nombre,' ', u.apellidos) AS usuario, u.id, s.id AS idSeguimiento FROM seguimientos AS s
+		$sqlseguimientos = "SELECT s.fecha, s.descripcion, CONCAT(u.nombre,' ', u.apellidos) AS usuario, u.id, s.id as idSeguimiento FROM seguimientos AS s
 							JOIN usuarios AS u ON s.usuario = u.id
-							WHERE incidencia = :incidencia
-							ORDER BY id";
+							WHERE s.incidencia = :incidencia
+							ORDER BY s.id";
 		// preparamos la consulta
 		$resultadoseguimientos = $conn->prepare($sqlseguimientos);
 		// pasamos valores a la consulta mediante parametros

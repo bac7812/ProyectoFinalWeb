@@ -2,9 +2,6 @@
 	<!-- JS jQuery -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 
-	<!-- JS Cookies -->
-	<script src="/proyecto/js/cookies.js"></script>
-
 	<!-- JS Bootstrap -->
 	<script src="/proyecto/js/bootstrap/bootstrap.min.js"></script>
 	

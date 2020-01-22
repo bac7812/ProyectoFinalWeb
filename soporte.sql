@@ -174,7 +174,6 @@ CREATE TABLE `permisos` (
   `ver` int(11) NOT NULL,
   `editar` int(11) NOT NULL,
   `eliminar` int(11) NOT NULL,
-  `mostrar` int(11) NOT NULL,
   `configurar` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
@@ -188,7 +187,7 @@ CREATE TABLE `permisos` (
 
 LOCK TABLES `permisos` WRITE;
 /*!40000 ALTER TABLE `permisos` DISABLE KEYS */;
-INSERT INTO `permisos` VALUES (1,0,0,0,1,1),(2,1,1,0,1,0),(3,1,0,0,1,0);
+INSERT INTO `permisos` VALUES (1,0,0,0,1),(2,1,1,0,0),(3,1,0,0,0);
 /*!40000 ALTER TABLE `permisos` ENABLE KEYS */;
 UNLOCK TABLES;
 

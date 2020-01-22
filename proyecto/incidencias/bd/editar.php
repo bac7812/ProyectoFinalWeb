@@ -7,6 +7,7 @@
 		// comprobar seguimiento para añadir
 		if($_POST['seguimiento'] == "añadir"){
 			if($_POST['descripcion_seguimiento'] != ""){
+				$id = htmlentities(addslashes($_GET['id']));
 				// declaramos la consulta
 				$sql = "SELECT * FROM incidencias WHERE id=:id";
 				// preparamos la consulta
@@ -18,7 +19,7 @@
 				$registro = $resultado->fetch();
 				// comprobamos la consulta
 				if ($registro) {
-					$incidencia = htmlentities(addslashes($_GET['id']));
+					$incidencia 	= htmlentities(addslashes($_GET['id']));
 					$descripcion 	= htmlspecialchars(addslashes($_POST['descripcion_seguimiento']));
 					$usuario 		= $_SESSION['id'];
 					// declaramos la consulta
@@ -33,6 +34,12 @@
 					if($resultado->execute()){
 						$_SESSION['aviso'] = '<p class="correcto">Ya añadido seguimiento.</p>';
 					}
+					else {
+						echo "incorrecto";
+					}
+				}
+				else {
+				$_SESSION['aviso'] = '<p class="error">Fallo</p>';
 				}
 			} else {
 				$_SESSION['aviso'] = '<p class="error">El campo de descripción del seguimiento esta vacio. Introduzca un valor.</p>';
@@ -73,13 +80,11 @@
 					$prioridad			= htmlspecialchars(addslashes($_POST['prioridad']));
 					$estado				= htmlspecialchars(addslashes($_POST['estado']));
 					$validacion			= htmlspecialchars(addslashes($_POST['validacion']));
-					$titulo				= htmlspecialchars(addslashes($_POST['titulo']));
-					$descripcion		= htmlspecialchars(addslashes($_POST['descripcion']));
 					// declaramos la consulta
 					if($fecha_cerrada == 1){
-						$sql = "UPDATE incidencias SET fecha_modificacion=now(), fecha_cerrada=:now(), asignada=:asignada, tipo=:tipo, categoria=:categoria, prioridad=:prioridad, estado=:estado, validacion=:validacion, titulo=:titulo, descripcion=:descripcion WHERE id=:id";
+						$sql = "UPDATE incidencias SET fecha_modificacion=now(), fecha_cerrada=:now(), asignada=:asignada, tipo=:tipo, categoria=:categoria, prioridad=:prioridad, estado=:estado, validacion=:validacion WHERE id=:id";
 					} else {
-						$sql = "UPDATE incidencias SET fecha_modificacion=now(), fecha_cerrada=:now(), asignada=:asignada, tipo=:tipo, categoria=:categoria, prioridad=:prioridad, estado=:estado, validacion=:validacion, titulo=:titulo, descripcion=:descripcion WHERE id=:id";
+						$sql = "UPDATE incidencias SET fecha_modificacion=now(), asignada=:asignada, tipo=:tipo, categoria=:categoria, prioridad=:prioridad, estado=:estado, validacion=:validacion WHERE id=:id";
 					}
 					// preparamos la consulta
 					$resultado = $conn->prepare($sql);
@@ -91,8 +96,6 @@
 					$resultado->bindParam(':prioridad', $prioridad);
 					$resultado->bindParam(':estado', $estado);
 					$resultado->bindParam(':validacion', $validacion);
-					$resultado->bindParam(':titulo', $titulo);
-					$resultado->bindParam(':descripcion', $descripcion);
 					// ejecutamos la consulta
 					if($resultado->execute()){
 						$_SESSION['aviso'] = '<p class="correcto">Ya modificado incidencia.</p>';
@@ -131,7 +134,6 @@
 			$descripcion 		= $registro['descripcion'];
 			$adjunto			= $registro['adjunto'];
 		}
-		echo $estado;
 		// tipos
 		// declaramos la consulta
 		$sqltipo = "SELECT * FROM tipos WHERE estado=1";
@@ -182,18 +184,33 @@
 		// ejecutamos la consulta
 		$resultadovalidaciones->execute();
 		
+		// idUsuarioSeguimientos
+		// declaramos la consulta
+		$sqlIdUsuarioSeguimientos = "SELECT usuario FROM seguimientos WHERE incidencia = :incidencia GROUP BY usuario";
+		// preparamos la consulta
+		$resultadoIdUsuarioSeguimientos = $conn->prepare($sqlIdUsuarioSeguimientos);
+		// pasamos valores a la consulta mediante parametros
+		$resultadoIdUsuarioSeguimientos->bindValue(':incidencia', $id);
+		// ejecutamos la consulta
+		$resultadoIdUsuarioSeguimientos->execute();
+		$registroIdUsuarioSeguimientos = $resultadoIdUsuarioSeguimientos->fetch();
+		if($registroIdUsuarioSeguimientos){
+			$IdUsuarioSeguimientos = $registroIdUsuarioSeguimientos['usuario'];
+		}
+		
 		// seguimientos
 		// declaramos la consulta
-		$sqlseguimientos = "SELECT *, CONCAT(u.nombre,' ', u.apellidos) AS usuario, u.id, s.id AS idSeguimiento FROM seguimientos AS s
+		$sqlseguimientos = "SELECT s.fecha, s.descripcion, CONCAT(u.nombre,' ', u.apellidos) AS usuario, u.id, s.id as idSeguimiento FROM seguimientos AS s
 							JOIN usuarios AS u ON s.usuario = u.id
-							WHERE incidencia = :incidencia
-							ORDER BY id";
+							WHERE s.incidencia = :incidencia
+							ORDER BY s.id";
 		// preparamos la consulta
 		$resultadoseguimientos = $conn->prepare($sqlseguimientos);
 		// pasamos valores a la consulta mediante parametros
 		$resultadoseguimientos->bindValue(':incidencia', $id);
 		// ejecutamos la consulta
 		$resultadoseguimientos->execute();
+		
 	}
 	
 	// cierra la conexión con la base de datos	

@@ -1,5 +1,5 @@
 <?php
-	if($eliminar == 1 or $configurar == 1){
+	if($configurar == 1){
 		
 		// conexión a la base de datos
 		require('../conf/conexion.php');

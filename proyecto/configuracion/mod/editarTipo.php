@@ -3,13 +3,6 @@
 		<div class="panel panel-default configuracion"><!-- grupo -->
 			<div class="panel-body"><!-- subgrupo -->
 				
-				<?php
-					if(isset($_SESSION['aviso'])){ 
-						echo '<div class="mensaje">' .$_SESSION['aviso']. '</div>'; 
-						unset($_SESSION['aviso']);
-					};
-				?>
-				
 				<div class="titulo"><!-- titulo -->
 					<h1><?php echo $titulo_principal ?></h1>
 				</div><!-- /titulo -->

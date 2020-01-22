@@ -41,6 +41,11 @@ function anadirSeguimiento(){
 	ajax.onreadystatechange = function(){
 		if (ajax.readyState == 4 && ajax.status == 200){
 			location.reload();
+			console.log("correcto");
+		}
+		else{
+			console.log("incorrecto");
+			console.log(url);
 		}
 	}
 }

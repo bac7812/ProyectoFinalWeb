@@ -27,6 +27,7 @@
 				$resultado->bindParam(':id', $id);
 				// ejecutamos la consulta
 				if($resultado->execute()){
+					unlink($_SERVER['DOCUMENT_ROOT'] .'/proyecto/'.$registro['adjunto']);
 					$incidencia	= htmlentities(addslashes($_GET['id']));
 					// declaramos la consulta
 					$sql = "DELETE FROM seguimientos WHERE incidencia=:incidencia";

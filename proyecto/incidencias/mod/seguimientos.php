@@ -1,11 +1,12 @@
 					
 					<table class="table table-bordered"><!-- tabla -->
+						
 						<thead>
 						<tr>
 							<th>Fecha</th>
 							<th>Descripción</th>
 							<th>Usuario</th>
-							<?php $registroseguimientos = $resultadoseguimientos->fetch(); if($registroseguimientos['id'] == $_SESSION['id']) { echo '<th></th>'; } ?>
+							<?php if($IdUsuarioSeguimientos == $_SESSION['id']) { echo '<th></th>'; } ?>
 						</tr>
 						</thead>
 						<tbody>
@@ -20,6 +21,7 @@
 						</tr>
 						
 						<?php endwhile; ?>
+						
 						
 						</tbody>
 					</table><!-- /tabla -->

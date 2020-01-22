@@ -29,7 +29,7 @@
 						<td><?php echo $registro['prioridad']; ?></td>
 						<td><?php echo $registro['estado']; ?></td>
 						<td><?php echo $registro['validacion']; ?></td>
-						<td><?php if($ver == 1 or $configurar == 1) { echo '<a href="index.php?opcion=ver&id=' .$registro['id']. '">Ver</a> ';} ?> <?php if($editar == 1 or $configurar == 1) { echo '<a href="index.php?opcion=editar&id=' .$registro['id']. '">Editar</a> ';} ?> <?php if($eliminar == 1 or $configurar == 1) { echo '<a href="#" data-toggle="modal" data-target="#eliminarModalIncidencia" onClick="eliminarModalIncidencia('.$registro['id'].')">Eliminar</a>'; } ?></td>
+						<td><?php if($ver == 1) { echo '<a href="index.php?opcion=ver&id=' .$registro['id']. '">Ver</a> ';} ?> <?php if($editar == 1 or $configurar == 1) { echo '<a href="index.php?opcion=editar&id=' .$registro['id']. '">Editar</a> ';} ?> <?php if($eliminar == 1 or $configurar == 1) { echo '<a href="#" data-toggle="modal" data-target="#eliminarModalIncidencia" onClick="eliminarModalIncidencia('.$registro['id'].')">Eliminar</a>'; } ?></td>
 						</tr>
 						
 						<?php endwhile; ?>
